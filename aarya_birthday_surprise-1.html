@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe8f0">
+<title>Happy Birthday, Aaru! 💗</title>
+<style>
+  :root { --pink:#f7a9c4; --deep:#9d496d; --cream:#fff9f7; --ink:#65465a; }
+  * { box-sizing:border-box }
+  body {
+    margin:0; min-height:100vh; overflow-x:hidden; color:var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    background: radial-gradient(circle at 15% 10%, #fff 0 5%, transparent 28%),
+                linear-gradient(145deg,#fff2f6,#fce0eb 52%,#fff7ed);
+  }
+  .sparkle { position:fixed; pointer-events:none; opacity:.55; animation: float 8s ease-in-out infinite; }
+  .s1{top:8%;left:8%;font-size:25px}.s2{top:20%;right:9%;font-size:20px;animation-delay:1s}
+  .s3{bottom:12%;left:12%;font-size:22px;animation-delay:2s}.s4{bottom:18%;right:10%;font-size:28px;animation-delay:3s}
+  @keyframes float { 50%{transform:translateY(-18px) rotate(12deg)} }
+  main { width:min(92%,720px); margin:0 auto; padding:42px 0 60px; text-align:center; }
+  .tag { display:inline-block; padding:8px 15px; border:1px solid #f2bfd0; border-radius:30px; background:#ffffff9c; letter-spacing:2px; font:11px Arial,sans-serif; color:#a65b7c; }
+  h1 { font-size:clamp(42px,9vw,76px); line-height:1.02; margin:22px 0 12px; color:var(--deep); font-weight:normal; }
+  .subtitle { font:14px Arial,sans-serif; letter-spacing:1px; color:#986c81; }
+  .card { margin:30px auto 0; padding:clamp(24px,6vw,48px); border:1px solid #fff; border-radius:28px; background:#ffffffc9; box-shadow:0 18px 55px #b76c8a20; }
+  .cake { font-size:66px; margin:2px 0 12px; filter:drop-shadow(0 7px 7px #e9a6bc55); }
+  .message { font-size:clamp(19px,4vw,25px); line-height:1.65; margin:0 auto; max-width:520px; }
+  .name { color:#b9577e; font-style:italic; }
+  button { cursor:pointer; border:0; border-radius:30px; padding:14px 23px; margin-top:25px; color:white; background:linear-gradient(100deg,#e88eae,#c66b91); font:14px Arial,sans-serif; box-shadow:0 8px 20px #c66b9133; }
+  button:hover { transform:translateY(-2px) }
+  .hidden { display:none }
+  .note { margin-top:24px; font:13px/1.6 Arial,sans-serif; color:#98788a; }
+  .footer { margin-top:28px; font:12px Arial,sans-serif; color:#aa8797; letter-spacing:1px; }
+  .hearts { position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+  .heart { position:absolute; bottom:-30px; animation:rise 4s linear forwards; font-size:20px; }
+  @keyframes rise { to { transform:translateY(-110vh) rotate(25deg); opacity:0 } }
+  .qrbox { margin:36px auto 0; padding:20px; max-width:440px; border-radius:20px; background:#ffffffa8; border:1px dashed #e7a9bf; }
+  .qrbox h2 { color:var(--deep); font-weight:normal; margin:0 0 8px; }
+  .qrbox p { font:12px/1.5 Arial,sans-serif; color:#98788a; }
+  input { width:min(100%,330px); padding:12px; border:1px solid #e8b7c9; border-radius:12px; font:13px Arial,sans-serif; }
+  #qr { display:block; width:180px; height:180px; margin:16px auto 0; background:white; padding:8px; border-radius:10px; }
+  .small { font:11px Arial,sans-serif; color:#a98b99; }
+</style>
+</head>
+<body>
+<div class="sparkle s1">✦</div><div class="sparkle s2">♡</div><div class="sparkle s3">✧</div><div class="sparkle s4">♡</div>
+<div class="hearts" id="hearts"></div>
+<main>
+  <div class="tag">A LITTLE BIRTHDAY SURPRISE</div>
+  <h1>Happy Birthday,<br><span class="name">Aaru!</span></h1>
+  <div class="subtitle">A day as lovely as you are ✨</div>
+  <section class="card">
+    <div class="cake">🎂</div>
+    <p class="message">Wishing you a day filled with <span class="name">happiness, laughter</span> and all your favourite little things. May the year ahead bring you wonderful memories, exciting moments and plenty of reasons to smile. 💗</p>
+    <button id="wishBtn">Open your little surprise ✨</button>
+    <p id="extra" class="message hidden" style="font-size:19px;margin-top:24px">Keep shining, keep smiling, and have the sweetest birthday ever! 🌷</p>
+  </section>
+  <div class="footer">MADE WITH GOOD WISHES · 💗</div>
+
+  <section class="qrbox">
+    <h2>Make the QR code</h2>
+    <p>After you publish this page online, paste its public link here to create a scannable QR code.</p>
+    <input id="pageUrl" type="url" placeholder="https://your-birthday-page-link">
+    <br><button id="qrBtn" type="button">Generate QR code</button>
+    <img id="qr" class="hidden" alt="QR code for Aaru's birthday page">
+    <p class="small">The QR code will open this page when scanned. Keep the page link public for it to work.</p>
+  </section>
+</main>
+<script>
+  const btn=document.getElementById('wishBtn');
+  btn.addEventListener('click',()=>{
+    document.getElementById('extra').classList.remove('hidden');
+    btn.textContent='Surprise opened 💗';
+    btn.disabled=true;
+    for(let i=0;i<24;i++){
+      const h=document.createElement('span'); h.className='heart';
+      h.textContent=['♡','💗','✦','🌸'][Math.floor(Math.random()*4)];
+      h.style.left=Math.random()*100+'%';
+      h.style.animationDuration=(3+Math.random()*3)+'s';
+      document.getElementById('hearts').appendChild(h);
+      setTimeout(()=>h.remove(),6500);
+    }
+  });
+  document.getElementById('qrBtn').addEventListener('click',()=>{
+    const url=document.getElementById('pageUrl').value.trim();
+    if(!/^https?:\/\//i.test(url)){ alert('Paste the full public link, starting with https://'); return; }
+    const img=document.getElementById('qr');
+    img.src='https://api.qrserver.com/v1/create-qr-code/?size=240x240&data='+encodeURIComponent(url);
+    img.classList.remove('hidden');
+  });
+</script>
+</body>
+</html>
